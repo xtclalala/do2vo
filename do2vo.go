@@ -1,34 +1,10 @@
-package main
+package do2vo
 
 import (
 	"fmt"
 	"reflect"
 	"strings"
 )
-
-type yyt struct {
-	Name string `json:"name" y1t:"add,update"`
-	Age  int    `json:"age" y1t:"add,delete"`
-	Sex  bool   `json:"sex" y1t:"add,delete"`
-	home home   `y1t:"add"`
-}
-
-type home struct {
-	Na string `json:"name" y1t:"-"`
-	Ag int    `json:"age" y1t:"delete"`
-	Se bool   `json:"sex" y1t:"delete"`
-}
-
-func main() {
-	//y := yyt{Age: 1, Name: "test", Sex: true, Home: []home{{Ag: 1, Na: "N1"}, {Ag: 2, Na: "N2"}}}
-	y := yyt{Age: 1, Name: "test", Sex: true, home: home{Ag: 2, Na: "N2"}}
-	response, err := GetResponse(y, "add")
-	fmt.Println("before", y)
-	if err == nil {
-		fmt.Println(response)
-	}
-
-}
 
 func GetResponse(d any, target string) (any, error) {
 	typeOf := reflect.TypeOf(d)
